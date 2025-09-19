@@ -48,7 +48,7 @@ async def validar_documentos(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(formatoCreacion.file, buffer)
 
-        resultados["formato"] = validar_formato_transportador(
+        resultados["documentoFormato"] = validar_formato_transportador(
             file_path,
             codigoTransportador,
             nombreTransportador,
@@ -82,7 +82,7 @@ async def validar_documentos(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(certificadoEPS.file, buffer)
 
-        resultados["eps"] = validar_eps(file_path, nombreConductor, cedula)
+        resultados["documentoEPS"] = validar_eps(file_path, nombreConductor, cedula)
 
     # 5) Validar ARL
     if certificadoARL:
@@ -90,7 +90,7 @@ async def validar_documentos(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(certificadoARL.file, buffer)
 
-        resultados["arl"] = validar_arl(file_path, nombreConductor, cedula)
+        resultados["documentoARL"] = validar_arl(file_path, nombreConductor, cedula)
 
     # 6) Validar pensión
     if certificadoPension:
@@ -98,6 +98,6 @@ async def validar_documentos(
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(certificadoPension.file, buffer)
 
-        resultados["pension"] = validar_documento_pension(file_path, nombreConductor, cedula)
+        resultados["documentoPension"] = validar_documento_pension(file_path, nombreConductor, cedula)
 
     return {"resultados": resultados}
